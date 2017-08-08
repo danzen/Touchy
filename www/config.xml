@@ -39,7 +39,7 @@
 
     <!-- Plugins -->
 	<access origin="*" browserOnly="true"/>
-	<gap:plugin name="org.apache.cordova.inappbrowser" />
+    <!-- <gap:plugin name="org.apache.cordova.inappbrowser" /> -->
 
     <!-- Define app icon for each platform. -->
 	<!-- see 'Make Mobile Icons.jsx' (GitHub root directory) for auto creation in photoshop -->
