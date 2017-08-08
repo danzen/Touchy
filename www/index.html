@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Touchy</title>
+
+<!-- Welcome to ZIM at http://zimjs.com - Code Interactive Media Pizzazz! 				-->
+<!-- ZIM runs on the HTML Canvas powered by JavaScript and CreateJS http://createjs.com -->
+<!-- Founded by Inventor Dan Zen - http://danzen.com - Canadian New Media Award Winner 	-->
+<!-- ZIM is free to use. You can donate to help improve ZIM at http://zimjs.com/donate 	-->
+
+<!-- as of ZIM 4.3.0 load createjs namespace first -->
+<script src="libraries/createjs-2015.11.26.min.js"></script>
+<script>var zon = true; // true for comments from zim code</script>
+<script src="libraries/zim_5.4.0.js"></script><!-- add _doc to see code -->
+<!-- use zimjs.com/code/distill for minified individual functions! -->
+
+<script src="scripts/model.js"></script>
+<script src="scripts/view.js"></script>
+<script src="scripts/controller.js"></script>
+<script>
+
+var stage, stageW, stageH;
+
+var frame = new zim.Frame();
+frame.on("ready", function() {
+
+	stage = frame.stage;
+	stageW = frame.width;
+	stageH = frame.height;
+	frame.color = frame.blue;
+
+	frame.loadAssets("logo.jpg", "assets/");
+	frame.on("complete", function() {
+
+		var layoutManager = new zim.LayoutManager();
+		var view = app.makeView(layoutManager);
+
+		var pages = new zim.Pages([
+			view.page1,
+			{page:view.page2, swipe:[null,view.page3,null,null]},
+			{page:view.page3, swipe:[view.page2,null,null,null]},
+			view.page4,
+			view.page5,
+			view.page6
+		], null, null, [
+			[view.page2, view.page3, "slide", 600],
+			[view.page3, view.page2, "slide", 600],
+		]);
+		pages.addTo(stage);
+
+		app.makeControls(view, pages);
+
+		frame.on("resize", resize);
+		function resize(e) {
+			stageW = frame.width;
+			stageH = frame.height;
+
+			view.scale(pages.page); // blob and logo
+			layoutManager.resize();
+			pages.resize();
+		}
+	});
+
+}); // end of ready
+</script>
+
+</head>
+
+<body>
+<!-- canvas with id="myCanvas" is made by zim Frame -->
+</body>
+</html>

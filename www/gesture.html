@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Gesture</title>
+
+<!-- Welcome to ZIM at http://zimjs.com - Code Interactive Media Pizzazz! 				-->
+<!-- ZIM runs on the HTML Canvas powered by JavaScript and CreateJS http://createjs.com -->
+<!-- Founded by Inventor Dan Zen - http://danzen.com - Canadian New Media Award Winner 	-->
+<!-- ZIM is free to use. You can donate to help improve ZIM at http://zimjs.com/donate 	-->
+
+<!-- as of ZIM 4.3.0 load createjs namespace first -->
+<script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+<script>var zon = true; // true for comments from zim code</script>
+<script src="../../live/zim_5.4.0_doc.js"></script><!-- add _doc to see code -->
+<!-- use zimjs.com/code/distill for minified individual functions! -->
+
+<script>
+
+var stage, stageW, stageH;
+
+var frame = new zim.Frame();
+frame.on("ready", function() {
+
+	stage = frame.stage;
+	stageW = frame.width;
+	stageH = frame.height;
+	frame.color = frame.blue;
+
+	var rect = new zim.Rectangle(200,200,frame.pink)
+		.centerReg(stage);
+	rect.gesture({slide:true, slideEffect:5, rect:new createjs.Rectangle(0,0,stageW,stageH)});
+
+	// rect.on("pressup", function(){rect.noGesture({rotate:false});});
+
+
+
+}); // end of ready
+</script>
+
+
+</head>
+
+<body>
+<!-- canvas with id="myCanvas" is made by zim Frame -->
+</body>
+</html>
