@@ -98,6 +98,7 @@ var app = function(app) {
 
         // PAGE 3 to PAGE 4
 
+        var counterInterval;
         v.page3.go.on("mousedown", function() {
             var outer = v.page4.outer;
             var inner = v.page4.inner;
@@ -198,7 +199,8 @@ var app = function(app) {
                 }
             }
 
-            zim.interval(400, function() {
+            if (counterInterval) counterInterval.clear();
+            counterInterval = zim.interval(400, function() {
                 var val = 0;
                 zim.loop(pointers, function(id, amount) {
                     val = amount;
@@ -230,16 +232,24 @@ var app = function(app) {
             v.page6.lossesAmount.text = app.data.losses;
         }
 
-        v.page6.cancel.on("click", function() {
+
+        var cancel = new zim.Button({width:220, height:100, label:"CANCEL", color:frame.grey, rollColor:frame.green, corner:0});
+        var confirm = new zim.Button({width:220, height:100, label:"CLEAR", color:frame.purple, rollColor:frame.green, corner:0});
+
+        var pane;
+        cancel.on("click", function() {
             v.page6.pane.hide();
         });
-        v.page6.confirm.on("click", function() {
+        confirm.on("click", function() {
             app.clearData();
             setDataFields();
             v.page6.pane.hide();
         });
         v.page6.clear.on("mousedown", function(){
-            v.page6.pane.show();
+            pane = new zim.Pane({width:stageW*.85, height:stageW*.8/2, corner:0, color:frame.yellow, modal:true, displayClose:false});
+            cancel.scaleTo(pane, 40).center(pane).mov(-pane.width*.45/2);
+            confirm.scaleTo(pane, 40).center(pane).mov(pane.width*.45/2);
+            pane.show();
         });
 
         v.page6.rate.on("mousedown", function(){

@@ -398,10 +398,6 @@ var app = function(app) {
             .addTo(stats).pos(again.x+again.width+20);
         rate.label.text = "RATE";
 
-        var pane = page6.pane = new zim.Pane({width:600, height:300, corner:0, color:frame.yellow, modal:false, displayClose:false});
-        var cancel = page6.cancel = new zim.Button({width:220, height:100, label:"CANCEL", color:frame.grey, rollColor:frame.green, corner:0}).center(pane).mov(-130);
-        var confirm = page6.confirm = new zim.Button({width:220, height:100, label:"CLEAR", color:frame.purple, rollColor:frame.green, corner:0}).center(pane).mov(130);
-
         var layout6 = new zim.Layout({
             holder:page6,
             regions:[
