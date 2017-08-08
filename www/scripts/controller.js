@@ -238,12 +238,12 @@ var app = function(app) {
 
         var pane;
         cancel.on("click", function() {
-            v.page6.pane.hide();
+            pane.hide();
         });
         confirm.on("click", function() {
             app.clearData();
             setDataFields();
-            v.page6.pane.hide();
+            pane.hide();
         });
         v.page6.clear.on("mousedown", function(){
             pane = new zim.Pane({width:stageW*.85, height:stageW*.8/2, corner:0, color:frame.yellow, modal:true, displayClose:false});
