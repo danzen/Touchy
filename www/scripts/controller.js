@@ -7,7 +7,7 @@ var app = function(app) {
         var logo = v.logo;
         var play = v.page1.play;
 
-        zim.Ticker.add(function() {
+        Ticker.add(function() {
             blob.update();
         });
 
@@ -19,10 +19,10 @@ var app = function(app) {
                 wait:200,
                 ease:"backOut"
             });
-            zim.timeout(300, function() {
+            timeout(300, function() {
                 blob.alpha = 0;
                 blob.color = frame.green;
-                zim.stopZimAnimate("blob");
+                stopZimAnimate("blob");
                 v.blogSet();
                 blob.animate({
                     obj:{alpha:1},
@@ -37,11 +37,11 @@ var app = function(app) {
                 obj:{y:stageH-logo.height},
                 time:600,
             });
-            zim.timeout(100, function() {
+            timeout(100, function() {
                 blob.alpha = 0;
                 v.blobSet2();
             });
-            zim.timeout(500, function() {
+            timeout(500, function() {
                 blob.alpha = 1;
                 stage.update();
             });
@@ -123,8 +123,8 @@ var app = function(app) {
                 wait:400,
                 call: function() {
                     var totalTime = 20;
-                    zim.interval(1000, function(obj) {
-                        time.text = zim.decimals((totalTime - obj.count)/100, 2, 2, 1, true, true);
+                    interval(1000, function(obj) {
+                        time.text = decimals((totalTime - obj.count)/100, 2, 2, 1, true, true);
                         if (obj.count == obj.total) {
 
                             // PAGE 4 to PAGE 5
@@ -143,7 +143,7 @@ var app = function(app) {
                 obj:{y:"500"},
                 time:500,
                 call:function() {
-                    zim.stopZimAnimate("blob");
+                    stopZimAnimate("blob");
                     blob.alpha = 0;
                     v.blobSet3();
                 }
@@ -183,7 +183,7 @@ var app = function(app) {
 
             function setColors() {
                 var val = 0;
-                zim.loop(pointers, function(id, amount) {
+                loop(pointers, function(id, amount) {
                     val = amount;
                     if (val == 2) return true; // exits the loop completely (like a break)
                 });
@@ -200,9 +200,9 @@ var app = function(app) {
             }
 
             if (counterInterval) counterInterval.clear();
-            counterInterval = zim.interval(400, function() {
+            counterInterval = interval(400, function() {
                 var val = 0;
-                zim.loop(pointers, function(id, amount) {
+                loop(pointers, function(id, amount) {
                     val = amount;
                     if (val == 2) return true; // exits the loop completely (like a break)
                 });
@@ -233,8 +233,8 @@ var app = function(app) {
         }
 
 
-        var cancel = new zim.Button({width:220, height:100, label:"CANCEL", color:frame.grey, rollColor:frame.green, corner:0});
-        var confirm = new zim.Button({width:220, height:100, label:"CLEAR", color:frame.purple, rollColor:frame.green, corner:0});
+        var cancel = new Button({width:220, height:100, label:"CANCEL", color:frame.grey, rollColor:frame.green, corner:0});
+        var confirm = new Button({width:220, height:100, label:"CLEAR", color:frame.purple, rollColor:frame.green, corner:0});
 
         var pane;
         cancel.on("click", function() {
@@ -246,14 +246,15 @@ var app = function(app) {
             pane.hide();
         });
         v.page6.clear.on("mousedown", function(){
-            pane = new zim.Pane({width:stageW*.85, height:stageW*.8/2, corner:0, color:frame.yellow, modal:true, displayClose:false});
+            pane = new Pane({width:stageW*.85, height:stageW*.8/2, corner:0, color:frame.yellow, modal:true, displayClose:false});
             cancel.scaleTo(pane, 40).center(pane).mov(-pane.width*.45/2);
             confirm.scaleTo(pane, 40).center(pane).mov(pane.width*.45/2);
             pane.show();
         });
 
         v.page6.rate.on("mousedown", function(){
-            zgo("http://itunes.apple.com/app/touchy/id363872647","_blank");
+            // zgo("http://itunes.apple.com/app/touchy/id363872647","_blank");
+            zgo("https://play.google.com/store/apps/details?id=air.com.danzen.touchy","_blank");
         });
 
         // PAGE 6 to PAGE 3
@@ -261,6 +262,7 @@ var app = function(app) {
         v.page6.again.on("mousedown", function(){
             goToPage3();
             p.go(v.page3, "up", "slide", 600);
+            zim.distill();
         });
 
     }
