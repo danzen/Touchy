@@ -254,7 +254,7 @@ var app = function(app) {
 
         v.page6.rate.on("mousedown", function(){
             // zgo("http://itunes.apple.com/app/touchy/id363872647","_blank");
-            zgo("https://play.google.com/store/apps/details?id=air.com.danzen.touchy","_blank");
+            zgo("https://play.google.com/store/apps/details?id=com.danzen.touchy","_blank");
         });
 
         // PAGE 6 to PAGE 3
